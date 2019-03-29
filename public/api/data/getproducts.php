@@ -22,11 +22,10 @@ while($row = mysqli_fetch_assoc($result)){
         $image = $row['images'];
         $data[$currentID]['images'][] = $row;
     } else {
+        $row['price'] = intval($row['price']);
         $data[$currentID] = $row;
         $image = $row['images'];
         unset($row['images']);
-
-        $row['price'] = (int)$row['price'];
 
         $row['images'] = [$image];
     };
