@@ -1,6 +1,9 @@
 <?php 
 
 require_once('mysqlconnect.php');
+require_once('functions.php');
+
+set_exception_handler('handleError');
 
 $query = 'SELECT p.id, p.name, p.price,
 i.url AS `images`
@@ -11,6 +14,10 @@ i.url AS `images`
 
 /*procedural*/
 $result = mysqli_query($conn, $query);
+
+if(!$result) {
+    throw new Exception('invalid query: '.mysqli_error($conn));
+}
 
 $data = [];
 $images = [];
