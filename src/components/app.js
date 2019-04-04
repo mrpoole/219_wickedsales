@@ -5,9 +5,12 @@ import React from 'react';
 import ProductRoutes from './products';
 import { Route } from 'react-router-dom';
 import Home from './home';
+import Nav from './nav';
 
 const App = () => (
     <div>
+        <Nav/>
+        
         <Route exact path="/" component={Home}/>
         <Route path="/products" component={ProductRoutes}/>
     </div>
