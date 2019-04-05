@@ -1,0 +1,1 @@
+"{\"success\":true,\"cartItems\":[{\"name\":\"Wicked Creature\",\"price\":2000,\"images\":\"/dist/images/wicked.jpg\",\"quantity\":3,\"id\":1},{\"name\":\"Wicked Shoes\",\"price\":42150,\"images\":\"/dist/images/wicked2.jpg\",\"quantity\":2,\"id\":2}],\"cartMetaData\":{\"created\":26840656535,\"total\":90000}}"
