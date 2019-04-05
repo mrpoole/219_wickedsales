@@ -1,6 +1,6 @@
 <?php
 
-require_once('mysqlconnect.php');
+require_once('functions.php');
 //if there's an error, this function will run
 set_exception_handler('handleError');
 require_once('config.php');
