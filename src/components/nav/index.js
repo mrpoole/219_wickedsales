@@ -28,7 +28,7 @@ class Nav extends Component {
 
         return (
             <Fragment>
-                <nav className="purple darken-2">
+                <nav className="blue darken-3">
                     <div className="nav-wrapper">
                         <Link className="brand-logo" to="/">Wicked Sales</Link>
                         <a href="#" data-target="sidenav" className="sidenav-trigger">
