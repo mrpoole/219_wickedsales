@@ -2,7 +2,7 @@
 
 require_once('mysqlconnect.php');
 //if there's an error, this function will run
-set_exception_handler('handleError');
+// set_exception_handler('handleError');
 require_once('mysqlconnect.php');
 
 if(empty($_GET['productID'])){
@@ -36,10 +36,10 @@ $data = mysqli_fetch_assoc($result);
 $data['price'] = intval($data['price']);
 $data['id'] = intval($data['id']);
 $data['miscDetails'] = json_decode($data['miscDetails']);
-$data['images'] = explode($data[',','images']);
+$data['images'] = explode(',',$data['images']);
 
 $output = [
-    'success' => true;
+    'success' => true,
     'productInfo' => $data
 ];
 
