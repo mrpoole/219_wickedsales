@@ -1,8 +1,6 @@
 import React from 'react';
 import { formatMoney } from '../../helpers';
 
-console.log('Format Monies:', formatMoney(1127));
-
 export default (props) => {
     return (
         <li className="collection-item avatar">
