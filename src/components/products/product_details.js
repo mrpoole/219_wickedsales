@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import ProductCarousel from './product_carousel';
+import { formatMoney } from '../../helpers';
+import MiscDetails from './misc_details';
 
 class ProductDetails extends Component {
     state = {
@@ -22,7 +25,6 @@ class ProductDetails extends Component {
     }
 
     render() {
-        console.log('Product Details:', this.state.details)
         const { details } = this.state;
 
         if (details === null) {
@@ -31,19 +33,35 @@ class ProductDetails extends Component {
             return <h1 className="center">NO PRODUCT FOUND</h1>
         }
 
-        const { description = "No description available", name, image } = details;
+        const { description = "No description available", name, images, price, miscDetails } = details;
 
         return (
             <div className="product-details">
+                <h1 className="center">{name}</h1>
                 <div className="row">
-                    <div className="col s12 m6 offset-m3">
-                        <div className="card blue-grey darken-1">
-                            <div className="card-content white-text">
-                                <span className="card-title">{name}</span>
-                                <img src={`/dist/${image}`}/>
-                                <p>{description}</p>
-                            </div>
+                    <ProductCarousel images={images} />
+                    <div className="col s12 m4">
+                        <div className="right-align product-price">{formatMoney(price)}</div>
+
+                        <div className="right-align add-to-cart">
+
+                            <span className="qty-container">
+                                <button className="btn btn-floating purple lighten-1">
+                                    <i className="material-icons">remove</i>
+                                </button>
+                                <span className="product-qty">1</span>
+                                <button className="btn btn-floating purple lighten-1">
+                                    <i className="material-icons">add</i>
+                                </button>
+                            </span>
+
+                            <button className="btn purple lighten-1">
+                                <i className="material-icons">add_shopping_cart</i>
+                            </button>
                         </div>
+
+                        <p>{description}</p>
+                        <MiscDetails details={miscDetails} />
                     </div>
                 </div>
             </div>
