@@ -25,7 +25,7 @@ if(empty($_SESSION['cart_id'])){
 		`item_count` = $product_quantity,
 		`total_price` = $product_total,
 		`created` = NOW(),
-		`users_id` = $user_id,
+		`user_id` = $user_id,
 		`changed` = NOW()
 	";
 	$cart_result = mysqli_query($conn, $cart_create_query);
@@ -36,7 +36,7 @@ if(empty($_SESSION['cart_id'])){
 		throw new Exception('data was not added to cart table');
 	}
 	$cart_id = mysqli_insert_id($conn);
-	$_SESSION['carts_id'] = $cart_id;
+	$_SESSION['cart_id'] = $cart_id;
 } else {
 	$cart_id = $_SESSION['cart_id'];
 	$update_cart_query = "UPDATE `carts` SET 
