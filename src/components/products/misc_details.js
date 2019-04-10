@@ -4,8 +4,6 @@ import { toWords } from '../../helpers';
 export default props => {
     const { details } = props;
     const parsedDetails = JSON.parse(details);
-    console.log('Misc Details Props:', parsedDetails);
-    console.log('Object keys:', Object(parsedDetails));
 
     const additionalInfo = Object.keys(parsedDetails).map(key => {
         let values = parsedDetails[key];
