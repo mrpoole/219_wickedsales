@@ -4,9 +4,10 @@ set_exception_handler('handleError');
 require_once('config.php');
 require_once('mysqlconnect.php');
 
+$user_id = 1;
 $cart_id = $_SESSION['cart_id'];
 
-$query = "SELECT `c.created`, `c.total_price`, `ci.quantity`, `p.id`, `p.name`, `p.price`, (SELECT `url` FROM `images` AS `i` WHERE `i.products_id` = `p.id` LIMIT 1) FROM `carts` AS `c` JOIN `cart_items` AS `ci` ON `ci.carts_id` = `c.id` JOIN `products` as `p` ON `ci.products_id` JOIN `images` AS `i` ON `i.proucts_id` = `p.id` WHERE `c.id` = 1";
+$query = "SELECT `c.created`, `c.total_price`, `ci.quantity`, `p.id`, `p.name`, `p.price`, (SELECT `url` FROM `images` AS `i` WHERE `i.products_id` = `p.id` LIMIT 1) FROM `carts` AS `c` JOIN `cart_items` AS `ci` ON `ci.carts_id` = `c.id` JOIN `products` as `p` ON `ci.products_id` JOIN `images` AS `i` ON `i.proucts_id` = `p.id` WHERE `c.id` = $cart_id AND c.`users_id` = $user_id";
 
 if(empty($_SESSION['cart_id'])){
     throw new Exception('Missing cart id');
