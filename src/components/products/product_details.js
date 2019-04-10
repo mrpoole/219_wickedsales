@@ -3,6 +3,7 @@ import axios from 'axios';
 import ProductCarousel from './product_carousel';
 import { formatMoney } from '../../helpers';
 import MiscDetails from './misc_details';
+import ProductAdd from './product_add';
 
 class ProductDetails extends Component {
     state = {
@@ -10,6 +11,7 @@ class ProductDetails extends Component {
     }
 
     async componentDidMount() {
+        const { params } = this.props.match;
         const { params } = this.props.match;
         const resp = await axios.get(`/api/getproductdetails.php?productID=${params.product_id}`);
 
@@ -43,22 +45,7 @@ class ProductDetails extends Component {
                     <div className="col s12 m4">
                         <div className="right-align product-price">{formatMoney(price)}</div>
 
-                        <div className="right-align add-to-cart">
-
-                            <span className="qty-container">
-                                <button className="btn btn-floating purple lighten-1">
-                                    <i className="material-icons">remove</i>
-                                </button>
-                                <span className="product-qty">1</span>
-                                <button className="btn btn-floating purple lighten-1">
-                                    <i className="material-icons">add</i>
-                                </button>
-                            </span>
-
-                            <button className="btn purple lighten-1">
-                                <i className="material-icons">add_shopping_cart</i>
-                            </button>
-                        </div>
+                        <ProductAdd productId={params.product_id}/>
 
                         <p>{description}</p>
                         <MiscDetails details={miscDetails} />
