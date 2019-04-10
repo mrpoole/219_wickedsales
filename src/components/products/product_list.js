@@ -18,15 +18,11 @@ class ProductList extends Component {
     }
 
     goToDetails(id){
-        console.log('Redirect to details, product id:', id);
-        console.log('Props:', this.props)
-
         this.props.history.push(`/products/${id}`);
     }
 
     getProducts(){
         axios.get('/api/getproducts.php').then((resp) => {
-            console.log(resp);
             this.setState({
                 products: resp.data.products
             });
@@ -34,8 +30,6 @@ class ProductList extends Component {
     }
 
     render(){
-        console.log('State:', this.state);
-
         const productList = this.state.products.map((product) => {
             return <ProductItem key={product.id} {...product} goToDetails={this.goToDetails}/>
         });
