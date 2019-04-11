@@ -24,6 +24,8 @@ if(empty($_POST['password'])){
 $email = $input['email'];
 $password = $input['password'];
 
+$email = addslashes($email);
+
 $hashedPassword = sha1($password);
 
 unset($input['password']);
