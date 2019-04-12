@@ -21,7 +21,7 @@ class ProductCarousel extends Component {
         });
 
         return(
-            <div ref={(element) => this.carousel = element} className="col s12 m8 carousel carousel-slider">
+            <div ref={(element) => this.carousel = element} className="col s12 m4 carousel carousel-slider">
                 {items}
             </div>
         );
