@@ -27,7 +27,7 @@ class App extends Component {
 
     async getCartItemsCount(){
         const resp = await axios.get('/api/getcartitemcount.php');
-        console.log('Item count resp:', resp);
+
         this.updateCartItems(resp.data.itemCount);
     }
 
