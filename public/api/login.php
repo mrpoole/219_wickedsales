@@ -31,10 +31,16 @@ $hashedPassword = sha1($password);
 unset($input['password']);
 
 $query = "SELECT `id`, `name` FROM `users`
-    WHERE `email` = '$email' AND `password` = '$hashedPassword'
+    WHERE `email` = ? AND `password` = ?
     ";
 
-$result = mysqli_query($conn, $query);
+$statement = mysqli_prepare($conn, $query); //send the safe query to the db
+
+mysqli_stmt_bind_param($statement, 'ss', $email, $hashedPassword); //send the dangerous data to the db
+
+mysqli_stmt_execute($statement); //tell the db to mix the query and the data
+
+$result = mysqli_stmt_get_result($statement); //get the result pointer for the prepared query statement's data
 
 if(!$result){
     throw new Exception(mysqli_error($conn));
