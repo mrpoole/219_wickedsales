@@ -7,46 +7,42 @@ const SignUpForm = props => {
 
     return (
         <form onSubmit={handleSubmit(signUp)}>
+
             <div className="row">
-                <Field col="s12" id="name" name="name" component={Input} label="name" />
+                <Field id="name" col="s12 m6" name="name" component={Input} label="Full Name" />
+                <Field id="email" col="s12 m6" name="email" component={Input} label="Email" />
             </div>
             <div className="row">
-                <Field col="s12" id="email" name="email" component={Input} label="email" />
-            </div>
-            <div className="row">
-                <Field col="s12" id="password" name="password" component={Input} type="password" label="password" />
-            </div>
-            <div className="row">
-                <Field col="s12" id="passwordconfirm" name="passwordconfirm" component={Input} type="password" label="password" />
+                <Field id="password" col="s12 m6" name="password" component={Input} type="password" label="Password" />
+                <Field id="password-confirm" col="s12 m6" name="passwordConfirm" component={Input} type="password" label="Confirm Password" />
             </div>
 
             <div className="row">
-                <button className="btn btn-large green darken-2 right">Sign Up</button>
+                <div className="col s12 right-align">
+                    <button className="btn purple darken-2">Sign Up</button>
+                </div>
             </div>
         </form>
     );
 }
 
-function validate(values) {
-    const { name, email, password, passwordconfirm } = values;
+function validate({ email, name, password, passwordConfirm }) {
     const errors = {};
-
-    if (!name) {
-        errors.name = 'Please enter your name';
-    }
 
     if (!email) {
         errors.email = 'Please enter your email';
+    }
+
+    if (!name) {
+        errors.name = 'Please enter your full name';
     }
 
     if (!password) {
         errors.password = 'Please enter your password';
     }
 
-    if (!passwordconfirm) {
-        errors.passwordconfirm = 'Required';
-    } else if (passwordconfirm !== password) {
-        errors.passwordconfirm = 'Error: Password did not match';
+    if(password !== passwordConfirm){
+        errors.passwordConfirm = 'Passwords do not match';
     }
 
     return errors;
